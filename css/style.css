@@ -62,7 +62,7 @@ h1 {
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 20px;
     line-height: 17px;
     /* identical to box height */
     
@@ -75,7 +75,7 @@ h1 {
 .photographer_section_city_tagline{
     /* position: absolute; */
     margin: 0;
-    width: 200px;
+    width: 215px;
     height: 13px;
     left: 32px;
     top: 287px;
@@ -83,7 +83,7 @@ h1 {
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 13px;
     /* identical to box height */
 
@@ -94,7 +94,7 @@ h1 {
 
 .photographer_section_city_price{
     /* position: absolute; */
-    margin: 0;
+    margin-top: 0;
     width: 45px;
     height: 12px;
     left: 78px;
@@ -103,7 +103,7 @@ h1 {
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 9px;
+    font-size: 11px;
     line-height: 12px;
     /* identical to box height */
     
