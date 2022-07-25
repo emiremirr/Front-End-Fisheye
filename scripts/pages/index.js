@@ -3,12 +3,7 @@ async function getPhotographers() {
     await fetch  ('./data/photographers.json')
     
     .then(function (response) { return response.json()})
-    .then(function (data) {
-console.log(data.media)
-        photographers = data.photographers
-        console.log(photographers)}
-    
-    )
+    .then(function (data) { photographers = data.photographers })
     // Work with JSON data here
       
   .catch(err => {
@@ -41,8 +36,8 @@ console.log(data.media)
             photographers: [...photographers]})
     }
     async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
-        photographers.forEach((photographer) => {
+            const photographersSection = document.querySelector(".photographer_section");
+            photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
