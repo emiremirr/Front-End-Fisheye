@@ -1,10 +1,11 @@
-function photographerFactory(photographers) {
-    console.log(photographers)    
-    const { name, portrait, city, country, tagline, price, id} = photographers;
+function photographerFactory(arrayPhotographers) {
+    console.log(arrayPhotographers)    
+    const { name, portrait, city, country, tagline, price, id} = arrayPhotographers;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
+        
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
         const link = document.createElement('a');
@@ -41,4 +42,7 @@ function photographerFactory(photographers) {
         return (article);
     }
     return { name, picture, getUserCardDOM }
+
+
+
 }

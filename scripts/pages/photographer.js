@@ -41,6 +41,8 @@ async function init() {
 };
 
 init();
+
+
 function photographerFactory(foundPhotographer) {
   
   const { name, portrait, city, country, tagline, price, id} = foundPhotographer;
