@@ -22,14 +22,10 @@ async function getPhotographer() {
   }
 
 async function displayPhotographer(foundPhotographer) {
-  
   const photographerSection = document.querySelector(".photograph-header");
-            
-            const photographerModel = photographerFactory(foundPhotographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            
-            photographerSection.insertAdjacentElement('afterbegin', userCardDOM);
-            
+  const photographerModel = photographerFactory(foundPhotographer);
+  const userCardDOM = photographerModel.getUserCardDOM();
+  photographerSection.insertAdjacentElement('afterbegin', userCardDOM);          
 }
 
 async function init() {
