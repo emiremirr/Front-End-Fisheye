@@ -111,3 +111,84 @@ h1 {
     
     color: #757575;
 }
+
+/* PHOTOGRAPHER.HTML */
+
+.photograph-header_presentation{
+    display: flex;
+    align-items: flex-start;
+}
+
+.photograph-header_presentation h2 {
+    left: 0%;
+right: 21.23%;
+top: 0%;
+bottom: 58.5%;
+
+font-family: 'DM Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 64px;
+line-height: 83px;
+
+color: #D3573C;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+
+.photograph-header_presentation_city_country{
+   
+    left: 0%;
+    right: 65.36%;
+    top: 41.5%;
+    bottom: 43%;
+    
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    
+    color: #901C1C;
+    
+}
+
+.photograph-header_presentation_city_tagline{
+    left: 0%;
+    right: 2.79%;
+    top: 66.5%;
+    bottom: 22%;
+    
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    
+    color: #525252;
+    
+}
+
+.photograph-header_presentation_city_price{
+    /* position: absolute; */
+    margin-top: 0;
+    width: 45px;
+    height: 12px;
+    left: 78px;
+    top: 303px;
+    
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 12px;
+    /* identical to box height */
+    
+    text-align: center;
+    
+    color: #757575;
+}
