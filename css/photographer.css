@@ -1,6 +1,4 @@
-#contact_modal {
-    display: none;
-}
+/*  style photograph header */
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -97,8 +95,38 @@ color: #D3573C;
     color: #757575;
 }
 
+/* PHOTO */
+
+.media-photographer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: ; */
+    grid-column-gap: 95px;
+    grid-row-gap: 95px;
+    margin: 5%;
+}
+
+.media-photographer-display{
+    
+
+        
+    
+}
+
+.media-photographer-display img{ 
+    height: 300px;
+    width: 350px;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: 50px 0px;;
+
+}
 
 
+/*  style modal */
+#contact_modal {
+    display: none;
+}
 
 .contact_button {
     font-size: 20px;
