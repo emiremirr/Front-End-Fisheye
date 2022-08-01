@@ -1,6 +1,7 @@
 function photographerFactory(arrayPhotographers) {
     console.log(arrayPhotographers)    
     const { name, portrait, city, country, tagline, price, id} = arrayPhotographers;
+    console.log("name "+name)
 
     const picture = `assets/photographers/${portrait}`;
 
