@@ -1,5 +1,6 @@
 // //Mettre le code JavaScript lié à la page photographer.html
   
+
 //  récupération de l'id de l'url
 var params = (new URL(document.location)).searchParams;
 var urlId = params.get('id'); 
@@ -75,6 +76,7 @@ function photographerFactory() {
   photographerSection.insertAdjacentElement('afterbegin', userCardDOM);          
 }
 
+/////////////////////////////////////////////////////////
 // recupération  des photos du photographe selon l'id de l'url
 function mediaFactory() {
   let mediaArray =[];
@@ -82,8 +84,9 @@ function mediaFactory() {
   arrayMedias.forEach((foundMedia) => {
     if (foundMedia.photographerId === numberUrlId){
       mediaArray.push(foundMedia)
-      const {date, id, image, likes, photographerId, price, title} = foundMedia;
-      console.log(foundMedia)
+      const {date, id, image, video, likes, photographerId, price, title} = foundMedia;
+      
+      
     }
 
   });
@@ -93,40 +96,110 @@ function mediaFactory() {
 
 // affichage des photos du photographe
 async function displayMediaPhotographer(foundMedia){
-
-
-  foundMedia.forEach((currentMedia) => {
-    const {date, id, image, likes, photographerId, price, title} = currentMedia
-    // pour récuperer le prénom du photographe
-    let foundPhotographer = arrayPhotographers.find(photographer => photographer.id === numberUrlId);
-    let name = foundPhotographer.name;
-    console.log(name)
-    let firstName = name.split(" ")[0];
-  
-  const mediaPhotographerImg = document.createElement("article")
-  createDiv.appendChild(mediaPhotographerImg)
-  const img = document.createElement('img')
-
-  const pathMedia = `./assets/SamplePhotos/${firstName}/${image}`;
-  img.setAttribute("src", pathMedia)
-  mediaPhotographerImg.setAttribute("class", "media-photographer-display")
-  mediaPhotographerImg.appendChild(img)
+    // on stock les vidéos et photos dans un array
+    let mediaLightBoxs = [];
+    foundMedia.forEach((currentMedia) => {
     
-  console.log(pathMedia)
-
+        const {date, id, image, video,  likes, photographerId, price, title} = currentMedia
+        
+        // pour récuperer le prénom du photographe
+        let foundPhotographer = arrayPhotographers.find(photographer => photographer.id === numberUrlId);
+        let name = foundPhotographer.name;
+        let firstName = name.split(" ")[0];
     
+        const mediaPhotographerImgVid = document.createElement("figure")
+        createDiv.appendChild(mediaPhotographerImgVid)
+        //  gestion du chemin si vidéo ou image
+        if (currentMedia.hasOwnProperty("image")) {
+            const img = document.createElement('img')
+            const pathMedia = `./assets/SamplePhotos/${firstName}/${image}`;
+            img.setAttribute("src", pathMedia)
+            // img.setAttribute("id", "lightboxImg")
+            mediaPhotographerImgVid.setAttribute("class", "media-photographer-display")
+            mediaPhotographerImgVid.appendChild(img)
+            mediaLightBoxs.push(img)
+            
+            // const priceSpan = document.createElement("span")
+            // priceSpan.setAttribute("class", "media-photographer-display-legende-price")
+            // MediaPhotographerLegende.appendChild(priceSpan)
+            // price.innerHTML= price;
+            // priceSpan.appendChild(price)
+            
+            // likesSpan.appendChild(likes)
+            // let prices = price+"€/jour"
+        } else {
+            const videoMedia = document.createElement('video')
+            const pathMedia = `./assets/SamplePhotos/${firstName}/${video}`;
+            videoMedia.setAttribute("name", "media")
+            videoMedia.setAttribute("src", pathMedia)
+            videoMedia.setAttribute("type", "video/mp4")
+            mediaPhotographerImgVid.setAttribute("class", "media-photographer-display")
+            mediaPhotographerImgVid.appendChild(videoMedia)
+            mediaLightBoxs.push(videoMedia)
+        }
 
+        // légende
+        const MediaPhotographerLegende =document.createElement("figcaption")
+        MediaPhotographerLegende.setAttribute("class", "media-photographer-display-legende")
+        mediaPhotographerImgVid.appendChild(MediaPhotographerLegende)
 
+        // span pour le like+icone coeur
+        const likesSpan = document.createElement("span")
+        likesSpan.setAttribute("class", "media-photographer-display-legende-likes")
+        MediaPhotographerLegende.appendChild(likesSpan)
+        // likes.innerHTML = currentMedia.likes
+        // likesSpan.appendChild(likes)
+        
+        // 
+        const iSpan =document.createElement('i')
     });
-  
+    
 
-  // let section = document.createElement('section')
-  // const mediaModel = displayMediaPhotographer(mediaArray)
-  // const mediaCardDom = mediaModel.mediaFactory()
-  
-};
+    //*********** LIGHTBOX ***********/
 
+    // création de la Lightbox
+    const lightBox = document.createElement("div")
+    lightBox.id = "lightbox"
+    const rightArrowIcon = document.createElement("img")
+    rightArrowIcon.setAttribute("src","./assets/icons/rightarrow.jpg") 
+    rightArrowIcon.id ="rightArrow"
 
+    mediaPhotographerMain.appendChild(lightBox)
+    lightBox.appendChild(rightArrowIcon)
+    
+    // boucle 
+    
+
+            // caroussel pour afficher nos images
+            function carroussel (){
+                let i = 0
+                const rightLightBoxs = document.querySelector("img#rightArrow")
+                rightLightBoxs.addEventListener("click", ()=> {
+                
+
+                if (i < mediaLightBoxs.length-1 ){ 
+                    mediaLightBoxs[i].id="lightBoxImg"
+                    const lightBoxId = document.getElementById("lightBoxImg")
+                    lightBoxId.classList.add('lightboximg')
+                    lightBox.appendChild(mediaLightBoxs[i++])
+                    
+                } else if (i = mediaLightBoxs.length){
+                      i=0
+                } 
+    
+      })  
+            }
+            window.onload =carroussel()
+
+            mediaLightBoxs.forEach(mediaLightBox=> {
+                mediaLightBox.addEventListener("click", () => {
+                    lightBox.classList.add("active")
+                    mediaLightBox.id="lightBoxImg"
+                    document.getElementById("lightBoxImg").classList.add('lightboximg')
+                    lightBox.appendChild(mediaLightBox)
+        })
+    })
+}
 
 async function init() {
   // Récupère les datas des photographes
