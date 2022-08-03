@@ -159,15 +159,35 @@ img.lightboximg {
     align-items: center;
     width: 80%;
     height: 80%;
+    object-fit: scale-down;
 }
 
 
 
 #rightArrow{
+
+    position: absolute;
     height: 5%;
     width: 5%;
     right: 0;
+
+}
+
+#leftArrow{
+
     position: absolute;
+    left: 0;
+    height: 5%;
+    right: 5%;
+
+}
+
+#close{
+    position: absolute;
+    right: 1%;
+    top: 5%;
+    background: 0;
+    color: #911C1C;
 }
 
 /*  style modal */

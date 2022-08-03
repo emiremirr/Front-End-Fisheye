@@ -160,12 +160,26 @@ async function displayMediaPhotographer(foundMedia){
     // création de la Lightbox
     const lightBox = document.createElement("div")
     lightBox.id = "lightbox"
+    
+    // création des icones en svg (flèches et close)
+    // flèche droite
     const rightArrowIcon = document.createElement("img")
-    rightArrowIcon.setAttribute("src","./assets/icons/rightarrow.jpg") 
+    rightArrowIcon.setAttribute("src","./assets/icons/RightArrow.svg") 
     rightArrowIcon.id ="rightArrow"
+    // flèche gauche
+    const leftArrowIcon = document.createElement("img")
+    leftArrowIcon.setAttribute("src","./assets/icons/LeftArrow.svg") 
+    leftArrowIcon.id ="leftArrow"
+    // croix de fermeture
+    const closeIcon = document.createElement("img")
+    closeIcon.setAttribute("src","./assets/icons/close.svg") 
+    closeIcon.id ="close"
+
 
     mediaPhotographerMain.appendChild(lightBox)
     lightBox.appendChild(rightArrowIcon)
+    lightBox.appendChild(leftArrowIcon)
+    lightBox.appendChild(closeIcon)
     
     // boucle 
     
@@ -174,20 +188,38 @@ async function displayMediaPhotographer(foundMedia){
             function carroussel (){
                 let i = 0
                 const rightLightBoxs = document.querySelector("img#rightArrow")
-                rightLightBoxs.addEventListener("click", ()=> {
+                const leftLightBoxs = document.querySelector("img#leftArrow")
+                const closeLightBox = document.querySelector("img#close") 
                 
 
-                if (i < mediaLightBoxs.length-1 ){ 
-                    mediaLightBoxs[i].id="lightBoxImg"
-                    const lightBoxId = document.getElementById("lightBoxImg")
-                    lightBoxId.classList.add('lightboximg')
-                    lightBox.appendChild(mediaLightBoxs[i++])
-                    
-                } else if (i = mediaLightBoxs.length){
-                      i=0
-                } 
-    
-      })  
+                // défilement du carrousel sur le coté droit
+                rightLightBoxs.addEventListener("click", ()=> {
+                
+                    if (i < mediaLightBoxs.length-1 ){ 
+                      
+                        mediaLightBoxs[i].id="lightBoxImg"
+                        const lightBoxId = document.getElementById("lightBoxImg")
+                        lightBoxId.classList.add("lightboximg")
+                        lightBox.appendChild(mediaLightBoxs[i++])
+                        
+                    } else if (i = mediaLightBoxs.length){
+                          i=0
+                    } 
+                })  
+                // défilement du carrousel sur le coté gauhce
+                leftLightBoxs.addEventListener("click", ()=> {
+                  if (i < mediaLightBoxs.length-1 ){ 
+                      mediaLightBoxs[i].id="lightBoxImg"
+                      const lightBoxId = document.getElementById("lightBoxImg")
+                      lightBoxId.classList.add("lightboximg")
+                      lightBox.appendChild(mediaLightBoxs[i--])
+                      
+                  } else if (i = 0){
+                        i=media.length
+                  } 
+                })
+
+                
             }
             window.onload =carroussel()
 
@@ -195,10 +227,10 @@ async function displayMediaPhotographer(foundMedia){
                 mediaLightBox.addEventListener("click", () => {
                     lightBox.classList.add("active")
                     mediaLightBox.id="lightBoxImg"
-                    document.getElementById("lightBoxImg").classList.add('lightboximg')
+                    document.getElementById("lightBoxImg").classList='lightboximg active'
                     lightBox.appendChild(mediaLightBox)
-        })
-    })
+                })
+            })
 }
 
 async function init() {
