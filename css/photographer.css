@@ -149,17 +149,20 @@ color: #D3573C;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
 }
 
-img.lightboximg {
+.lightBoxMedia{
+    display: none;
+}
+
+
+.lightBoxMedia.active{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 80%;
-    object-fit: scale-down;
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
 }
 
 
