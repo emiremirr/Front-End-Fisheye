@@ -145,12 +145,33 @@ async function displayMediaPhotographer(foundMedia){
         MediaPhotographerLegende.setAttribute("class", "media-photographer-display-legende")
         mediaPhotographerImgVid.appendChild(MediaPhotographerLegende)
 
+        // titre de légende
+        
+        const titleSpan = document.createElement("span")
+        titleSpan.setAttribute("class", "media-photographer-display-legende-title")
+        MediaPhotographerLegende.appendChild(titleSpan)
+        titleSpan.innerText=currentMedia.title
+
+
         // span pour le like+icone coeur
         const likesSpan = document.createElement("span")
         likesSpan.setAttribute("class", "media-photographer-display-legende-likes")
         MediaPhotographerLegende.appendChild(likesSpan)
         likesSpan.innerText = currentMedia.likes
        
+
+        const hearthIcon = document.createElement("img")
+        hearthIcon.setAttribute("src","./assets/icons/hearth.svg") 
+        hearthIcon.id ="hearthIcon"
+
+        hearthIcon.setAttribute("class","media-photographer-display-legende-hearth")
+        likesSpan.appendChild(hearthIcon)
+
+        
+
+       
+
+
         
         // 
         const iSpan =document.createElement('i')
@@ -172,14 +193,18 @@ async function displayMediaPhotographer(foundMedia){
     const rightArrowIcon = document.createElement("img")
     rightArrowIcon.setAttribute("src","./assets/icons/RightArrow.svg") 
     rightArrowIcon.id ="rightArrow"
+    rightArrowIcon.classList.add("rightArrowActive")
     // flèche gauche
     const leftArrowIcon = document.createElement("img")
     leftArrowIcon.setAttribute("src","./assets/icons/LeftArrow.svg") 
     leftArrowIcon.id ="leftArrow"
+    leftArrowIcon.classList.add("leftArrowActive")
+
     // croix de fermeture
     const closeIcon = document.createElement("img")
     closeIcon.setAttribute("src","./assets/icons/close.svg") 
     closeIcon.id ="close"
+    closeIcon.classList.add("closeActive")
 
 
     mediaPhotographerMain.appendChild(lightBox)
@@ -218,8 +243,8 @@ async function displayMediaPhotographer(foundMedia){
                         mediaLightBoxs[i].classList="lightBoxMedia active"
                         container_Media.removeChild(container_Media.firstChild)
                         container_Media.appendChild(mediaLightBoxs[i++])  
-
-                    } else if (i = mediaLightBoxs.length){
+                        
+                    } else if (i = mediaLightBoxs.length-1){
                           i=0
                           mediaLightBoxs[i].id="lightBoxMedia"
                           mediaLightBoxs[i].classList="lightBoxMedia active"
@@ -231,14 +256,20 @@ async function displayMediaPhotographer(foundMedia){
 
                 // défilement du carrousel sur le coté gauhce
                 leftLightBoxs.addEventListener("click", ()=> {
-                  if (i < mediaLightBoxs.length-1 ){ 
-                      mediaLightBoxs[i].id="lightBoxMedia"
-                      const lightBoxId = document.getElementById("lightBoxMedia")
-                      lightBoxId.classList.add("lightboxMedia")
-                      lightBox.appendChild(mediaLightBoxs[i--])
-                      
-                  } else if (i = -1){
-                        i=media.length
+          
+                  if (i > mediaLightBoxs.length-1 ){ 
+                    console.log("iiiiii-- :" +i) 
+                        mediaLightBoxs[i].id="lightBoxMedia"
+                        mediaLightBoxs[i].classList="lightBoxMedia active"
+                        container_Media.removeChild(container_Media.firstChild)
+                        container_Media.appendChild(mediaLightBoxs[i--])
+                        
+                  } else if (i = mediaLightBoxs.length){
+                        i=mediaLightBoxs.length-1
+                        mediaLightBoxs[i].id="lightBoxMedia"
+                        mediaLightBoxs[i].classList="lightBoxMedia active"
+                        container_Media.removeChild(container_Media.firstChild)
+                        container_Media.appendChild(mediaLightBoxs[i--]) 
                   } 
                 })
 
