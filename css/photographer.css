@@ -115,7 +115,6 @@ color: #D3573C;
     width: 350px;
     border-radius: 5px;
     object-fit: cover;
-    object-position: 50px 0px;;
 
 }
 
@@ -127,6 +126,68 @@ color: #D3573C;
     object-position: 50px 0px;;
 
 }
+.media-photographer-display-legende{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* titre de légende */
+.media-photographer-display-legende-title{
+ 
+left: 0%;
+right: 16.57%;
+top: 88.32%;
+bottom: 2.85%;
+
+font-family: 'DM Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 31px;
+
+color: #911C1C;
+
+
+}
+
+
+
+/* likes */
+.media-photographer-display-legende-likes{
+   
+left: 0%;
+right: 16.57%;
+top: 88.32%;
+bottom: 2.85%;
+
+font-family: 'DM Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 31px;
+
+color: #911C1C;
+
+}
+
+
+
+/* icone coeur */
+#hearthIcon{
+left: 8.33%;
+right: 8.33%;
+top: 12.5%;
+bottom: 11.04%;
+width: 42px;
+height: 42px;
+
+background: #911C1C;
+
+}
+
+
 
 /* style Lightbox */
 #lightbox.active{
@@ -158,9 +219,13 @@ color: #D3573C;
     
 }
 
+#rightArrow, #leftArrow, #close{
+    display: none;
+}
 
-#rightArrow{
 
+#rightArrow.rightArrowActive{
+    display: block;
     position: absolute;
     height: 5%;
     width: 5%;
@@ -171,8 +236,8 @@ color: #D3573C;
 }
 
 
-#leftArrow{
-
+#leftArrow.leftArrowActive{
+    display: block;
  position: absolute;
     height: 5%;
     width: 5%;
@@ -182,7 +247,8 @@ color: #D3573C;
 }
 
 
-#close{
+#close.closeActive{
+    display: block;
     position: absolute;
     
     top: 5%;
