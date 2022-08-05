@@ -109,6 +109,7 @@ async function displayMediaPhotographer(foundMedia){
     
         const mediaPhotographerImgVid = document.createElement("figure")
         createDiv.appendChild(mediaPhotographerImgVid)
+        
         //  gestion du chemin si vidéo ou image
         if (currentMedia.hasOwnProperty("image")) {
             const img = document.createElement('img')
@@ -127,6 +128,7 @@ async function displayMediaPhotographer(foundMedia){
             
             // likesSpan.appendChild(likes)
             // let prices = price+"€/jour"
+
         } else {
             const videoMedia = document.createElement('video')
             const pathMedia = `./assets/SamplePhotos/${firstName}/${video}`;
@@ -147,8 +149,8 @@ async function displayMediaPhotographer(foundMedia){
         const likesSpan = document.createElement("span")
         likesSpan.setAttribute("class", "media-photographer-display-legende-likes")
         MediaPhotographerLegende.appendChild(likesSpan)
-        // likes.innerHTML = currentMedia.likes
-        // likesSpan.appendChild(likes)
+        likesSpan.innerText = currentMedia.likes
+       
         
         // 
         const iSpan =document.createElement('i')
@@ -160,6 +162,9 @@ async function displayMediaPhotographer(foundMedia){
     // création de la Lightbox
     const lightBox = document.createElement("div")
     lightBox.id = "lightbox"
+
+    const container_Media =document.createElement("div")
+    container_Media.id = "container_Media"
     
     // création des icones en svg (flèches et close)
     // flèche droite
@@ -178,11 +183,21 @@ async function displayMediaPhotographer(foundMedia){
 
     mediaPhotographerMain.appendChild(lightBox)
     lightBox.appendChild(rightArrowIcon)
+    lightBox.appendChild(container_Media)
     lightBox.appendChild(leftArrowIcon)
     lightBox.appendChild(closeIcon)
     
     // boucle 
-    
+    mediaLightBoxs.forEach(mediaLightBox=> {
+                mediaLightBox.addEventListener("click", () => {
+                    lightBox.classList.add("active")
+                    mediaLightBox.id="lightBoxMedia"
+                    
+                    document.getElementById("lightBoxMedia").classList="lightBoxMedia active"
+                    container_Media.appendChild(mediaLightBox)
+                    
+                })
+            
 
             // caroussel pour afficher nos images
             function carroussel (){
@@ -194,27 +209,36 @@ async function displayMediaPhotographer(foundMedia){
 
                 // défilement du carrousel sur le coté droit
                 rightLightBoxs.addEventListener("click", ()=> {
-                
+                    // if(mediaLightBox.getAttribute("class")==="lightBoxMedia active"){
+                    //   mediaLightBox.setAttribute("class", "")
+                    // }
+              
                     if (i < mediaLightBoxs.length-1 ){ 
-                      
-                        mediaLightBoxs[i].id="lightBoxImg"
-                        const lightBoxId = document.getElementById("lightBoxImg")
-                        lightBoxId.classList.add("lightboximg")
-                        lightBox.appendChild(mediaLightBoxs[i++])
-                        
+
+                        mediaLightBoxs[i].id="lightBoxMedia"
+                        mediaLightBoxs[i].classList="lightBoxMedia active"
+                        container_Media.removeChild(container_Media.firstChild)
+                        container_Media.appendChild(mediaLightBoxs[i++])  
+
                     } else if (i = mediaLightBoxs.length){
                           i=0
+                          mediaLightBoxs[i].id="lightBoxMedia"
+                          mediaLightBoxs[i].classList="lightBoxMedia active"
+                          container_Media.removeChild(container_Media.firstChild)
+                          container_Media.appendChild(mediaLightBoxs[i++])  
                     } 
                 })  
+
+
                 // défilement du carrousel sur le coté gauhce
                 leftLightBoxs.addEventListener("click", ()=> {
                   if (i < mediaLightBoxs.length-1 ){ 
-                      mediaLightBoxs[i].id="lightBoxImg"
-                      const lightBoxId = document.getElementById("lightBoxImg")
-                      lightBoxId.classList.add("lightboximg")
+                      mediaLightBoxs[i].id="lightBoxMedia"
+                      const lightBoxId = document.getElementById("lightBoxMedia")
+                      lightBoxId.classList.add("lightboxMedia")
                       lightBox.appendChild(mediaLightBoxs[i--])
                       
-                  } else if (i = 0){
+                  } else if (i = -1){
                         i=media.length
                   } 
                 })
@@ -223,14 +247,7 @@ async function displayMediaPhotographer(foundMedia){
             }
             window.onload =carroussel()
 
-            mediaLightBoxs.forEach(mediaLightBox=> {
-                mediaLightBox.addEventListener("click", () => {
-                    lightBox.classList.add("active")
-                    mediaLightBox.id="lightBoxImg"
-                    document.getElementById("lightBoxImg").classList='lightboximg active'
-                    lightBox.appendChild(mediaLightBox)
-                })
-            })
+          })       
 }
 
 async function init() {
