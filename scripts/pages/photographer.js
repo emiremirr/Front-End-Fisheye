@@ -194,6 +194,7 @@ async function displayMediaPhotographer(foundMedia){
     rightArrowIcon.setAttribute("src","./assets/icons/RightArrow.svg") 
     rightArrowIcon.id ="rightArrow"
     rightArrowIcon.classList.add("rightArrowActive")
+
     // flèche gauche
     const leftArrowIcon = document.createElement("img")
     leftArrowIcon.setAttribute("src","./assets/icons/LeftArrow.svg") 
@@ -231,7 +232,7 @@ async function displayMediaPhotographer(foundMedia){
                 let i = 0
                 const rightLightBoxs = document.querySelector("img#rightArrow")
                 const leftLightBoxs = document.querySelector("img#leftArrow")
-                const closeLightBox = document.querySelector("img#close") 
+                const closeLightBoxs = document.querySelector("img#close") 
                 
 
                 // défilement du carrousel sur le coté droit
@@ -272,7 +273,12 @@ async function displayMediaPhotographer(foundMedia){
                         container_Media.appendChild(mediaLightBoxs[i--]) 
                   } 
                 })
-
+                // fermture via la croix
+                closeLightBoxs.addEventListener("click", () => {
+                  container_Media.removeChild(mediaLightBox)
+                  
+                  lightBox.style.display = "none"
+                })
                 
             }
             window.onload =carroussel()
