@@ -163,6 +163,7 @@ async function displayMediaPhotographer(foundMedia){
     const lightBox = document.createElement("div")
     lightBox.id = "lightbox"
 
+    // on va mettre les medias dans cette div
     const container_Media =document.createElement("div")
     container_Media.id = "container_Media"
     
@@ -189,10 +190,11 @@ async function displayMediaPhotographer(foundMedia){
     
     // boucle 
     mediaLightBoxs.forEach(mediaLightBox=> {
+
                 mediaLightBox.addEventListener("click", () => {
+                  console.log("fffffffffffff")
                     lightBox.classList.add("active")
                     mediaLightBox.id="lightBoxMedia"
-                    
                     document.getElementById("lightBoxMedia").classList="lightBoxMedia active"
                     container_Media.appendChild(mediaLightBox)
                     
@@ -209,9 +211,6 @@ async function displayMediaPhotographer(foundMedia){
 
                 // défilement du carrousel sur le coté droit
                 rightLightBoxs.addEventListener("click", ()=> {
-                    // if(mediaLightBox.getAttribute("class")==="lightBoxMedia active"){
-                    //   mediaLightBox.setAttribute("class", "")
-                    // }
               
                     if (i < mediaLightBoxs.length-1 ){ 
 
