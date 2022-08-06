@@ -1,3 +1,8 @@
+
+
+
+
+
 // //Mettre le code JavaScript lié à la page photographer.html
   
 
@@ -102,6 +107,7 @@ async function displayMediaPhotographer(foundMedia){
     
         const {date, id, image, video,  likes, photographerId, price, title} = currentMedia
         
+        // **** GRID **** //
         // pour récuperer le prénom du photographe
         let foundPhotographer = arrayPhotographers.find(photographer => photographer.id === numberUrlId);
         let name = foundPhotographer.name;
@@ -158,8 +164,7 @@ async function displayMediaPhotographer(foundMedia){
         likesSpan.setAttribute("class", "media-photographer-display-legende-likes")
         MediaPhotographerLegende.appendChild(likesSpan)
         likesSpan.innerText = currentMedia.likes
-       
-
+      
         const hearthIcon = document.createElement("img")
         hearthIcon.setAttribute("src","./assets/icons/hearth.svg") 
         hearthIcon.id ="hearthIcon"
@@ -167,16 +172,39 @@ async function displayMediaPhotographer(foundMedia){
         hearthIcon.setAttribute("class","media-photographer-display-legende-hearth")
         likesSpan.appendChild(hearthIcon)
 
-        
-
-       
-
-
-        
-        // 
-        const iSpan =document.createElement('i')
     });
-    
+
+      
+
+    //*********** FONCTION TRI ***********/
+        
+        // tri par likes (popularités)
+
+          let triLikesCroissant  = foundMedia.sort(function(a,b){
+            return a.likes - b.likes;
+          })
+          let triLikesDecroissant  = foundMedia.sort(function(a,b){
+            return b.likes - a.likes;
+          })
+        
+
+          // tri par date
+
+          const triDateCroissant = foundMedia.sort(function(a, b) { 
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return a >b ? -1 : a < b ? 1 : 0;
+           })
+
+          
+          let triDateDecroissant  = foundMedia.sort(function(a, b) { 
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return b > a ? 1 : b < a ? -1 : 0;
+           })
+
+          console.log(triDateCroissant)
+          console.log(triDateDecroissant)
 
     //*********** LIGHTBOX ***********/
 
@@ -193,19 +221,17 @@ async function displayMediaPhotographer(foundMedia){
     const rightArrowIcon = document.createElement("img")
     rightArrowIcon.setAttribute("src","./assets/icons/RightArrow.svg") 
     rightArrowIcon.id ="rightArrow"
-    rightArrowIcon.classList.add("rightArrowActive")
+
 
     // flèche gauche
     const leftArrowIcon = document.createElement("img")
     leftArrowIcon.setAttribute("src","./assets/icons/LeftArrow.svg") 
     leftArrowIcon.id ="leftArrow"
-    leftArrowIcon.classList.add("leftArrowActive")
 
     // croix de fermeture
     const closeIcon = document.createElement("img")
     closeIcon.setAttribute("src","./assets/icons/close.svg") 
     closeIcon.id ="close"
-    closeIcon.classList.add("closeActive")
 
 
     mediaPhotographerMain.appendChild(lightBox)
@@ -223,6 +249,9 @@ async function displayMediaPhotographer(foundMedia){
                     mediaLightBox.id="lightBoxMedia"
                     document.getElementById("lightBoxMedia").classList="lightBoxMedia active"
                     container_Media.appendChild(mediaLightBox)
+                    rightArrowIcon.classList.add("rightArrowActive")
+                    leftArrowIcon.classList.add("leftArrowActive")
+                    closeIcon.classList.add("closeActive")
                     
                 })
             
@@ -237,21 +266,27 @@ async function displayMediaPhotographer(foundMedia){
 
                 // défilement du carrousel sur le coté droit
                 rightLightBoxs.addEventListener("click", ()=> {
-              
-                    if (i < mediaLightBoxs.length-1 ){ 
+                  console.log(mediaLightBoxs.length)
+                  console.log("i :"+i)
+                    if (i < mediaLightBoxs.length ){ 
 
                         mediaLightBoxs[i].id="lightBoxMedia"
                         mediaLightBoxs[i].classList="lightBoxMedia active"
                         container_Media.removeChild(container_Media.firstChild)
                         container_Media.appendChild(mediaLightBoxs[i++])  
-                        
-                    } else if (i = mediaLightBoxs.length-1){
+                    
+                    } else if (i = mediaLightBoxs.length){
                           i=0
                           mediaLightBoxs[i].id="lightBoxMedia"
                           mediaLightBoxs[i].classList="lightBoxMedia active"
                           container_Media.removeChild(container_Media.firstChild)
-                          container_Media.appendChild(mediaLightBoxs[i++])  
-                    } 
+                          container_Media.appendChild(mediaLightBoxs[i])  
+                    } else {
+                      mediaLightBoxs[i].id="lightBoxMedia"
+                        mediaLightBoxs[i].classList="lightBoxMedia active"
+                        container_Media.removeChild(container_Media.firstChild)
+                        container_Media.appendChild(mediaLightBoxs[i++])  
+                    }
                 })  
 
 

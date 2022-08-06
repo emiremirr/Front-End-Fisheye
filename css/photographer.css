@@ -248,8 +248,8 @@ height: 20px;
 #close.closeActive{
     display: block;
     position: absolute;
-    
-    top: 5%;
+    top: 15%;
+    right: 6%;
 }
 
 /*  style modal */
